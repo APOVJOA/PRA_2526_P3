@@ -16,6 +16,9 @@ private:
     int max;
     ListLinked<TableEntry<V>>* table;
 
+//Función hash que devuelve la posición (cubeta) en la tabla hash de key.  
+//Se calculará como el resto de la divisón entre la suma de los 
+//valores ASCII numéricos de los caracteres de la clave y el tamaño de la tabla hash (ver nota más abajo).
     int h(const std::string& key) const {
         int sum = 0;
         for (size_t i = 0; i < key.size(); ++i)
@@ -24,6 +27,8 @@ private:
     }
 
 public:
+//Método constructor. Reservará memoria dinámica para crear una 
+//tabla table de tamaño size, e inicializará los atributos n y max de la clase
     HashTable(int size) : n(0), max(size) {
         table = new ListLinked<TableEntry<V>>[max];
     }
@@ -76,9 +81,9 @@ public:
     }
 
     // Sobrecarga <<
-    friend std::ostream& operator<<(std::ostream &out, const HashTable<V> &ht) {
-        for (int i = 0; i < ht.max; ++i) {
-            out << "Cubeta " << i << ": " << ht.table[i] << "\n";
+    friend std::ostream& operator<<(std::ostream &out, const HashTable<V> &th) {
+        for (int i = 0; i < th.max; ++i) {
+            out << "Cubeta " << i << ": " << th.table[i] << "\n";
         }
         return out;
     }
@@ -90,3 +95,4 @@ public:
 };
 
 #endif
+
