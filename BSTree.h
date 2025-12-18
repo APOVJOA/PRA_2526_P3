@@ -155,6 +155,10 @@ public:
         bst.print_inorder(out, bst.root);
         return out;
     }
+    T operator[](T e) const {
+    return search(e);  // Simplemente delega en search()
+}
 };
 
 #endif
+
